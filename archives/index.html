@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    归档
+  
+</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Water">
+<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:site_name" content="Water">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Water">
+
+
+
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">Water</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">Water</a></h1>
+    
+      <p class="subtitle">
+        Water
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+        
+      </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+          
+
+  
+  
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <h1><a href="/archives/2016" class="archive-year">2016</a></h1>
+        </div>
+        <div class="post-list">
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2016/07/31/demo-1/" >
+  hexo部署到github笔记
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2016/07/31/demo-1/"><span class="article-date">
+  2016-07-31
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术笔记/">技术笔记</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO-GitHub/">HEXO GitHub</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <p>整个环境是是搭在centos6.5上面的，所以我只介绍centos6.5安装过程，亲试。</p>
+<p>#第一步：安装node<br><code>wget http://nodejs.org/dist/v0.10.26/node-v0.10.26.tar.gz</code><br><code>tar -zvxf node-v0.10.26.tar.gz</code><br><code>./configure --prefix=/usr/local/node</code><br><code>make &amp;&amp; make install</code></p>
+<p>#第二步：安装git<br>这个可以直接yum安装，然后配置git:<br><code>git config --global user.email &quot;xx@xx.com&quot;</code><br><code>git config --global user.name &quot;name&quot;</code><br><code>ssh-keygen -t rsa -C &quot;xx@xx.com&quot;</code></p>
+<p>#第三步：安装Hexo<br><code>sudo npm install-g hexo</code><br>初始化，并指定blog目录<br><code>hexo init blog</code><br>生成静态页面<br><code>hexo generate</code><br>开启本地服务<br><code>hexo server</code></p>
+<p>#第四步：配置github<br>建立与你用户名对应的仓库，命名规范   你的用户名.github.io<br>然后配置_config.yml，注意配置项与值之间的空格，也就是冒号后面要有空格</p>
+<p><code>deploy:</code></p>
+<p><code>type: git</code></p>
+<p><code>repo: git@github.com:water940729/water940729.github.io.git</code></p>
+<p><code>branch:master</code></p>
+<p><em>这里我用的是ssh的方式，这里如果用https的话需要添加上用户名密码，指的是github上的用户名密码，一种是直接保存在本机，还有一种是直接写到url中</em><br><em><a href="https://yourname:password@git.oschina.net/name/project.git" target="_blank" rel="external">https://yourname:password@git.oschina.net/name/project.git</a></em></p>
+<hr>
+<p>执行hexo deploy如果出现</p>
+<p>Hexo 3.0: ERROR Deployer not found: git<br>解决办法npm install hexo-deployer-git –save</p>
+<p>hexo deploy的时候我也犯了一个很弱智的错误，因为安装在/usr/local，权限是755，所以我普通用户是不能安装的，我一直都是用的sudo进行的上面操作，等到sudo hexo deploy的时候，就一直会报错Permission denied (publickey)，后来我才知道，原来ssh公钥是保存在你普通用户下的，配置在github上的公钥也是你普通账户，所以你用sudo的时候,此时的用户就称为sudoer，所以就会出现denied。解决办法，将你安装目录改为普通用户权限，即让普通用户有权限执行hexo deploy</p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2016/07/31/demo/" >
+  Yii2.0权限系统，使用PhpManager的方式
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2016/07/31/demo/"><span class="article-date">
+  2016-07-31
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术笔记/">技术笔记</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP-YII2-0-RBAC/">PHP YII2.0 RBAC</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <p>网上搜了一大堆yii2.0权限系统，大抵都是千篇一律，而且基本上都是DbManager。看了半天官方文档之后，终于知道了PhpManager的方式下，是怎么引入权限系统。<br>介绍下我自己的使用。<br>1.首先，配置项：在配置文件中</p>
+<blockquote>
+<p><code>&#39;components&#39; =&gt; [</code><br><code>&#39;authManager&#39; =&gt; [</code><br><code>&#39;class&#39; =&gt; &#39;yii\rbac\PhpManager&#39;,</code><br><code>],</code><br><code>]</code></p>
+</blockquote>
+<p>2.使用authManager，通过$auth = Yii::$app-&gt;authManager;获得authManager句柄。</p>
+<p>3.下面就是定义权限。三个名词：权限，角色，用户。<br>*权限：说白了就是一个或者一组操作<br><code>$site_info = $auth-&gt;createPermission(&#39;site/delete&#39;);</code><br>新建一个权限，这个名字是你随便写的，但是在后面的beforeAction中会用到<br><code>$auth-&gt;add($site_info);</code><br>将权限写入，也就是写入配置文件中@web/rabc/items.php。</p>
+<p>*角色：说白了就是一个或者一组操作的集合，这些操作都可以调用<br><code>$role=$auth-&gt;createRole(&quot;Teachers&quot;);</code><br>新建一个角色<br><code>$auth-&gt;add($role);</code><br>将角色写入，也是写到配置文件中@web/rabc/items.php<br><code>$auth-&gt;addChild($role,$site_info);</code><br>将权限分配给角色，</p>
+<p>*用户：即浏览器的访问者<br><code>$auth-&gt;assign($role,Yii::$app-&gt;user-&gt;getId());</code><br>将角色分配给用户，用户是通过id识别，一般权限系统都是登录之后的，所以用id识别也可以，这个配置是写到@web/rabc/assignments.php</p>
+<p>4.然后就是对定义好的权限的验证。PhpManager的方式，在验证权限的时候一般与beforeAction()配合使用，beforeAction在其他action执行之前，会自动调用，注意，只是在action开头的操作执行之前会调用。</p>
+<blockquote>
+<p><code>public function beforeAction($action)</code><br><code>{</code><br>　　<code>$action = Yii::$app-&gt;controller-&gt;id.&#39;/&#39;.Yii::$app-&gt;controller-&gt;action-&gt;id;</code><br>    //这里的$action与前面定义的权限名应该一样。<br>　　<code>if($action==&#39;site/login&#39; || $action==&#39;site/regist&#39; || $action==&#39;site/error&#39;){</code><br>　　    　<code>return true;</code><br>　　<code>}</code><br>　　<code>if(\Yii::$app-&gt;user-&gt;can($action)){</code><br>    <code>//验证用户的权限，这里是需要角色分配给用户的，只有将id关联到了用户才可以验证的。</code><br>　　　　<code>return true;</code><br>　　<code>}else{</code><br>　　　　<code>echo &quot;&lt;script&gt;alert(&#39;对不起，您现在还没获此操作的权限&#39;)&lt;/script&gt;&quot;;</code><br>　　<code>}</code><br><code>}</code></p>
+</blockquote>
+<p>这个验证写的不是很好，可以再else中抛出异常，或者是一些其他对没有权限的处理。<br>参数$action，必须带上，亲试。函数里面的局部变量$action是你定义的权限名，\Yii::$app-&gt;user-&gt;can($action)是根据user的id字段来验证用户是否有这个权限。</p>
+<hr>
+<p>使用PhpManager的方式，权限的一些配置项都在@web/rbac/下，Linux系统下确保你在该目录有写权限。<br>@web/rbac/items.php保存的是角色以及权限的一些相关配置，@web/rbac/assignments.php保存的是角色分配给用户。完全可以不用框架提供的权限定义方式，自己手动在配置文件中定义<br>网上提到的默认角色，按照网上提的方法试过，没用，可能是我没有找到正确的方式吧。<br>权限分配给角色部分，由于是关联到id的，所以可能系统只有一张user表，user表中有个type字段来区分不同的用户，在添加用户的时候，就根据不同的type，将id分配给角色。</p>
+
+        
+      </div>
+    </div>
+
+  
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2016 Water - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    Yii2.0权限系统，使用PhpManager的方式
+  
+</title>
+
+<meta name="description" content="网上搜了一大堆yii2.0权限系统，大抵都是千篇一律，而且基本上都是DbManager。看了半天官方文档之后，终于知道了PhpManager的方式下，是怎么引入权限系统。介绍下我自己的使用。1.首先，配置项：在配置文件中
+
+&amp;#39;components&amp;#39; =&amp;gt; [&amp;#39;authManager&amp;#39; =&amp;gt; [&amp;#39;class&amp;#39; =&amp;gt; &amp;#39;yii\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yii2.0权限系统，使用PhpManager的方式">
+<meta property="og:url" content="http://yoursite.com/2016/07/31/demo/index.html">
+<meta property="og:site_name" content="Water">
+<meta property="og:description" content="网上搜了一大堆yii2.0权限系统，大抵都是千篇一律，而且基本上都是DbManager。看了半天官方文档之后，终于知道了PhpManager的方式下，是怎么引入权限系统。介绍下我自己的使用。1.首先，配置项：在配置文件中
+
+&amp;#39;components&amp;#39; =&amp;gt; [&amp;#39;authManager&amp;#39; =&amp;gt; [&amp;#39;class&amp;#39; =&amp;gt; &amp;#39;yii\">
+<meta property="og:updated_time" content="2016-07-31T09:33:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yii2.0权限系统，使用PhpManager的方式">
+<meta name="twitter:description" content="网上搜了一大堆yii2.0权限系统，大抵都是千篇一律，而且基本上都是DbManager。看了半天官方文档之后，终于知道了PhpManager的方式下，是怎么引入权限系统。介绍下我自己的使用。1.首先，配置项：在配置文件中
+
+&amp;#39;components&amp;#39; =&amp;gt; [&amp;#39;authManager&amp;#39; =&amp;gt; [&amp;#39;class&amp;#39; =&amp;gt; &amp;#39;yii\">
+
+
+
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">Water</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">Water</a></h1>
+    
+      <p class="subtitle">
+        Water
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+        
+      </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+          <article id="post-demo" class="article article-type-post">
+  
+    <h1 class="article-header">
+      Yii2.0权限系统，使用PhpManager的方式
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  2016-07-31
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术笔记/">技术笔记</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP-YII2-0-RBAC/">PHP YII2.0 RBAC</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>网上搜了一大堆yii2.0权限系统，大抵都是千篇一律，而且基本上都是DbManager。看了半天官方文档之后，终于知道了PhpManager的方式下，是怎么引入权限系统。<br>介绍下我自己的使用。<br>1.首先，配置项：在配置文件中</p>
+<blockquote>
+<p><code>&#39;components&#39; =&gt; [</code><br><code>&#39;authManager&#39; =&gt; [</code><br><code>&#39;class&#39; =&gt; &#39;yii\rbac\PhpManager&#39;,</code><br><code>],</code><br><code>]</code></p>
+</blockquote>
+<p>2.使用authManager，通过$auth = Yii::$app-&gt;authManager;获得authManager句柄。</p>
+<p>3.下面就是定义权限。三个名词：权限，角色，用户。<br>*权限：说白了就是一个或者一组操作<br><code>$site_info = $auth-&gt;createPermission(&#39;site/delete&#39;);</code><br>新建一个权限，这个名字是你随便写的，但是在后面的beforeAction中会用到<br><code>$auth-&gt;add($site_info);</code><br>将权限写入，也就是写入配置文件中@web/rabc/items.php。</p>
+<p>*角色：说白了就是一个或者一组操作的集合，这些操作都可以调用<br><code>$role=$auth-&gt;createRole(&quot;Teachers&quot;);</code><br>新建一个角色<br><code>$auth-&gt;add($role);</code><br>将角色写入，也是写到配置文件中@web/rabc/items.php<br><code>$auth-&gt;addChild($role,$site_info);</code><br>将权限分配给角色，</p>
+<p>*用户：即浏览器的访问者<br><code>$auth-&gt;assign($role,Yii::$app-&gt;user-&gt;getId());</code><br>将角色分配给用户，用户是通过id识别，一般权限系统都是登录之后的，所以用id识别也可以，这个配置是写到@web/rabc/assignments.php</p>
+<p>4.然后就是对定义好的权限的验证。PhpManager的方式，在验证权限的时候一般与beforeAction()配合使用，beforeAction在其他action执行之前，会自动调用，注意，只是在action开头的操作执行之前会调用。</p>
+<blockquote>
+<p><code>public function beforeAction($action)</code><br><code>{</code><br>　　<code>$action = Yii::$app-&gt;controller-&gt;id.&#39;/&#39;.Yii::$app-&gt;controller-&gt;action-&gt;id;</code><br>    //这里的$action与前面定义的权限名应该一样。<br>　　<code>if($action==&#39;site/login&#39; || $action==&#39;site/regist&#39; || $action==&#39;site/error&#39;){</code><br>　　    　<code>return true;</code><br>　　<code>}</code><br>　　<code>if(\Yii::$app-&gt;user-&gt;can($action)){</code><br>    <code>//验证用户的权限，这里是需要角色分配给用户的，只有将id关联到了用户才可以验证的。</code><br>　　　　<code>return true;</code><br>　　<code>}else{</code><br>　　　　<code>echo &quot;&lt;script&gt;alert(&#39;对不起，您现在还没获此操作的权限&#39;)&lt;/script&gt;&quot;;</code><br>　　<code>}</code><br><code>}</code></p>
+</blockquote>
+<p>这个验证写的不是很好，可以再else中抛出异常，或者是一些其他对没有权限的处理。<br>参数$action，必须带上，亲试。函数里面的局部变量$action是你定义的权限名，\Yii::$app-&gt;user-&gt;can($action)是根据user的id字段来验证用户是否有这个权限。</p>
+<hr>
+<p>使用PhpManager的方式，权限的一些配置项都在@web/rbac/下，Linux系统下确保你在该目录有写权限。<br>@web/rbac/items.php保存的是角色以及权限的一些相关配置，@web/rbac/assignments.php保存的是角色分配给用户。完全可以不用框架提供的权限定义方式，自己手动在配置文件中定义<br>网上提到的默认角色，按照网上提的方法试过，没用，可能是我没有找到正确的方式吧。<br>权限分配给角色部分，由于是关联到id的，所以可能系统只有一张user表，user表中有个type字段来区分不同的用户，在添加用户的时候，就根据不同的type，将id分配给角色。</p>
+
+  </div>
+  <footer class="article-footer">
+    
+
+    
+
+  </footer>
+</article>
+
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2016 Water - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
